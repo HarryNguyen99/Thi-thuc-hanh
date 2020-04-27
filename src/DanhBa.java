@@ -2,9 +2,10 @@ import java.awt.peer.SystemTrayPeer;
 import java.io.Serializable;
 
 public class DanhBa implements Serializable {
+    public static final String FORMAT = "%5d | %20s | %11s | %30s | %20s | %30s";
     private int id;
     private String hoTen;
-    private int soDienThoai;
+    private String soDienThoai;
     private String emali;
     private String facebook;
     private String điaChi;
@@ -12,16 +13,7 @@ public class DanhBa implements Serializable {
     public DanhBa() {
     }
 
-    public DanhBa(String hoTen, int soDienThoai, String emali, String facebook, String điaChi) {
-        this.hoTen = hoTen;
-        this.soDienThoai = soDienThoai;
-        this.emali = emali;
-        this.facebook = facebook;
-        this.điaChi = điaChi;
-    }
-
-    public DanhBa(int id, String hoTen, int soDienThoai, String emali, String facebook, String điaChi) {
-        this.id = id;
+    public DanhBa(String hoTen, String soDienThoai, String emali, String facebook, String điaChi) {
         this.hoTen = hoTen;
         this.soDienThoai = soDienThoai;
         this.emali = emali;
@@ -45,11 +37,11 @@ public class DanhBa implements Serializable {
         this.hoTen = hoTen;
     }
 
-    public int getSoDienThoai() {
+    public String getSoDienThoai() {
         return soDienThoai;
     }
 
-    public void setSoDienThoai(int soDienThoai) {
+    public void setSoDienThoai(String soDienThoai) {
         this.soDienThoai = soDienThoai;
     }
 
@@ -75,5 +67,10 @@ public class DanhBa implements Serializable {
 
     public void setĐiaChi(String điaChi) {
         this.điaChi = điaChi;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(FORMAT,id, hoTen, soDienThoai, emali, facebook, getĐiaChi());
     }
 }

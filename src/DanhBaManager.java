@@ -13,14 +13,15 @@ public class DanhBaManager {
     }
 
     public void add() {
-        int id = (danhBaList.size() > 0) ? (danhBaList.size() + 1) : 1;
+        int id = danhBaList.size();
         System.out.println("id danh bạ = " + id);
         String hoten = inputHoTen();
-        int sdt = inputSdt();
+        String sdt = inputSdt();
         String email = inputEmail();
         String facebook = inputFacebook();
         String diachi = inputDiaChi();
         DanhBa danhBa = new DanhBa(hoten, sdt, email, facebook, diachi);
+        danhBa.setId(id);
         danhBaList.add(danhBa);
         danhBaDao.write(danhBaList);
     }
@@ -65,13 +66,23 @@ public class DanhBaManager {
 
     public void show() {
         for (DanhBa danhBa : danhBaList) {
-            System.out.format("%50d | ", danhBa.getId());
-            System.out.format("%50d | ", danhBa.getHoTen());
-            System.out.format("%20s | ", danhBa.getSoDienThoai());
-            System.out.format("%50d | ", danhBa.getEmali());
+            System.out.format("%5s | ", danhBa.getId());
+            System.out.format("%20s | ", danhBa.getHoTen());
+            System.out.format("%11s | ", danhBa.getSoDienThoai());
+            System.out.format("%30s | ", danhBa.getEmali());
             System.out.format("%20s | ", danhBa.getFacebook());
-            System.out.format("%10.1f%n", danhBa.getĐiaChi());
+            System.out.format("%30s", danhBa.getĐiaChi());
+            System.out.println();
         }
+    }
+
+    public DanhBa timkiemTD(String ten){
+        for (DanhBa danhBa : danhBaList){
+            if (danhBa.getHoTen().equals(ten)){
+                return danhBa;
+            }
+        }
+        return null;
     }
 
     public int inputId() {
@@ -86,14 +97,14 @@ public class DanhBaManager {
         }
     }
 
-    private String inputHoTen() {
+    public String inputHoTen() {
         System.out.print("Nhập Tên: ");
         return scanner.nextLine();
     }
 
-    private int inputSdt() {
+    private String inputSdt() {
         System.out.print("Nhập SĐT: ");
-        return Integer.parseInt(scanner.nextLine());
+        return scanner.nextLine();
     }
 
     private String inputEmail() {

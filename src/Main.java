@@ -9,7 +9,7 @@ public class Main {
         boolean exit = false;
         DanhBaManager danhBaManager = new DanhBaManager();
         int danhBaId;
-        int id = scanner.nextInt();
+        String ten;
 
         showMenu();
         while (true) {
@@ -29,6 +29,15 @@ public class Main {
 
                 case "4":
                     danhBaManager.show();
+                    break;
+                case "5":
+                    ten = danhBaManager.inputHoTen();
+                    DanhBa danhBa = danhBaManager.timkiemTD(ten);
+                    if (danhBa == null){
+                        System.out.println("không có danh bạ");
+                    }else {
+                        System.out.println(danhBa);
+                    }
                     break;
                 case "0":
                     System.out.println("thoát!");
@@ -51,6 +60,8 @@ public class Main {
         System.out.println("2. Edit danh bạ theo id.");
         System.out.println("3. Delete danh bạ theo id.");
         System.out.println("4. Show danh bạ.");
+        System.out.println("5. tìm kiếm tuyệt đối.");
+        System.out.println("6. tìm kiếm tương đối.");
         System.out.println("0. exit.");
         System.out.println("---------------------------");
         System.out.print("Chọn chức năng: ");
